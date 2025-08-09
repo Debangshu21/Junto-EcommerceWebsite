@@ -52,18 +52,24 @@ console.log("--- All Routes Attached Successfully ---");
 
 // Serve frontend if in production
 if (process.env.NODE_ENV === "production") {
-    // Set static folder dist which is optimized react build
-    app.use(express.static(path.join(__dirname, "/frontend/dist")));
+    console.log("--- Production mode detected. Setting up frontend routes. ---");
 
-    // Any other route will redirect to index.html
+    console.log("Setting up static middleware...");
+    app.use(express.static(path.join(__dirname, "/frontend/dist")));
+    console.log("Static middleware configured.");
+
+    console.log("Setting up wildcard GET route...");
     app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
     });
+    console.log("Wildcard GET route configured.");
+} else {
+    console.log("--- Development mode detected. Skipping frontend routes. ---");
 }
 
+console.log("--- Configuration complete. Calling app.listen(). ---");
 
 app.listen(PORT, () => {
     console.log("Server is running on http://localhost:" + PORT);
-
     connectDB();
 });
