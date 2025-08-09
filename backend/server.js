@@ -22,23 +22,33 @@ const __dirname = path.resolve();
 app.use(express.json({ limit: "10mb" })); // allows you to parse the body of the request. limit 10mb allows upload of images till 10mbs
 app.use(cookieParser()); // allows access to cookies and it's variables
 
+console.log("--- Attaching Routes ---");
+
 // Authentication routes
+console.log("Attaching: /api/auth");
 app.use("/api/auth", authRoutes);
 
 // Product routes
+console.log("Attaching: /api/products");
 app.use("/api/products", productRoutes);
 
 // Cart routes
+console.log("Attaching: /api/cart");
 app.use("/api/cart", cartRoutes);
 
 // Coupon routes
+console.log("Attaching: /api/coupons");
 app.use("/api/coupons", couponRoutes);
 
 // Payment routes
+console.log("Attaching: /api/payments");
 app.use("/api/payments", paymentRoutes);
 
 // Analytics routes
+console.log("Attaching: /api/analytics");
 app.use("/api/analytics", analyticsRoutes);
+
+console.log("--- All Routes Attached Successfully ---");
 
 // Serve frontend if in production
 if (process.env.NODE_ENV === "production") {
