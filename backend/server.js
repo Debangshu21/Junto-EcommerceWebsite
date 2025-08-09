@@ -52,19 +52,12 @@ console.log("--- All Routes Attached Successfully ---");
 
 // Serve frontend if in production
 if (process.env.NODE_ENV === "production") {
-    console.log("--- Production mode detected. Setting up frontend routes. ---");
-
-    console.log("Setting up static middleware...");
     app.use(express.static(path.join(__dirname, "/frontend/dist")));
-    console.log("Static middleware configured.");
 
-    console.log("Setting up wildcard GET route...");
-    app.get("*", (req, res) => {
+    // Any route that doesn't start with /api will be handled by React
+    app.get(/^(?!\/api).*$/, (req, res) => {
         res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
     });
-    console.log("Wildcard GET route configured.");
-} else {
-    console.log("--- Development mode detected. Skipping frontend routes. ---");
 }
 
 console.log("--- Configuration complete. Calling app.listen(). ---");
