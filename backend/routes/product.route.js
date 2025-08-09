@@ -10,6 +10,8 @@ import {
 } from "../controllers/product.controller.js";
 import { adminRoute, protectRoute } from "../middleware/auth.middleware.js";
 
+console.log("--- Loading: product.route.js ---");
+
 const router = express.Router();
 
 

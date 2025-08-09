@@ -2,6 +2,8 @@ import express from "express";
 import { login, logout, signup, refreshToken, getProfile } from "../controllers/auth.controller.js";
 import { protectRoute } from "../middleware/auth.middleware.js";
 
+console.log("--- Loading: auth.route.js ---");
+
 const router = express.Router();
 
 // Route to signup page

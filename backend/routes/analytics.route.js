@@ -2,6 +2,8 @@ import express from "express";
 import { adminRoute, protectRoute } from "../middleware/auth.middleware.js";
 import { getAnalyticsData, getDailySalesData } from "../controllers/analytics.controller.js";
 
+console.log("--- Loading: analytics.route.js ---");
+
 const router = express.Router();
 
 // Route to analytics dashboard
